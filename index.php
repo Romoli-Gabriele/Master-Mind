@@ -12,19 +12,20 @@
     <table border="2">
         <form method="POST">
     <?php
-    require "functions.php";
+    require "MasterMind.php";
     session_start();
-    if(!isset($_SESSION["soluzione"])){
+    if(!isset($_SESSION["sessione"])){
      //rosso = 1, giallo = 2, verde = 3, celeste = 4
-    $_SESSION["soluzione"] = array( random_int(1,4), random_int(1,4),  random_int(1,4),  random_int(1,4));
-    $_SESSION["b1"] = 0;
-    $_SESSION["b2"] = 0;
-    $_SESSION["b3"] = 0;
-    $_SESSION["b4"] = 0;
+    $_SESSION["soluzione"] = new MasterMind();
     }else{
-         
+        $sequenza = array($_POST[0], $_POST[1], $_POST[2], $_POST[3] );
+       if($_SESSION["soluzione"]:: winControl($sequenza)){
+            echo "<h1>Hai vinto, ci hai impiegato $_SESSION[soluzione]::$turno</h1>";
+       }else{
+
+       }
     }
-    requestTable()
+    
     ?>
         </form>
     </table>
