@@ -35,8 +35,8 @@
     </table>
     <br>
     <br>
-    <table>
-        <?php if(!isset($_SESSION["soluzione"])){ $_SESSION["soluzione"]->resulTable($sequenza);}?>
+    <table border="2">
+        <?php if(isset($_SESSION["soluzione"])){ $_SESSION["soluzione"]->resulTable($sequenza);}?>
     </table>
 </body>
 </html>

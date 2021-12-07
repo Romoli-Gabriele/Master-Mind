@@ -56,6 +56,9 @@ class MasterMind
             }
         }
         $arr["bianco"] -= $arr["nero"];
+        while($arr["bianco"] + $arr["nero"]>4){
+            $arr["bianco"]--;
+        }
         return $arr;
     }
     function resulTable($sequenza)
