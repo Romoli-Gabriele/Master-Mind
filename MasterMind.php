@@ -9,6 +9,7 @@ class MasterMind
     {
         $this->turno = 0;
         $this->soluzione  = array(random_int(1, 4), random_int(1, 4),  random_int(1, 4),  random_int(1, 4));
+        $this->record = [];
     }
     static function requestTable()
     {
@@ -32,6 +33,7 @@ class MasterMind
     }
     function winControl($sequenza)
     {
+        array_push($this->record, $sequenza);
         if ($sequenza[0] == $this->soluzione[0] && $sequenza[1] == $this->soluzione[1] && $sequenza[2] == $this->soluzione[2] && $sequenza[3] == $this->soluzione[3]) {
             return true;
         } else {
@@ -61,20 +63,22 @@ class MasterMind
         }
         return $arr;
     }
-    function resulTable($sequenza)
-    {
-        $arr = $this->calcolaColori($sequenza);
-        echo "<tr><td>$this->turno</td><td>";
-        foreach ($sequenza as $v) {
-            if ($v == 1) {
-                $img = "images/rosso.gif";
-            } elseif ($v == 2) {
-                $img = "images/giallo.gif";
-            } elseif ($v == 3) {
-                $img = "images/verde.gif";
-            } else {
-                $img = "images/blu.gif";
-            }
+    function resulTable()
+    {   
+        foreach($this->record as $val){
+            $arr = $this->calcolaColori($val);
+            echo "<tr><td>$this->turno</td><td>";
+            foreach ($val as $v){
+                if ($v == 1) {
+                    $img = "images/rosso.gif";
+                } elseif ($v == 2) {
+                    $img = "images/giallo.gif";
+                } elseif ($v == 3) {
+                    $img = "images/verde.gif";
+                } else {
+                    $img = "images/blu.gif";
+                }
+        }
             echo"<img src=$img>";
         }
         echo"</td><td>";
